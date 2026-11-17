@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Der KI-osk</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="/logo.png">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="/logo.png" alt="Der KI-osk" class="logo">
+            <h1>Der KI-osk</h1>
+        </div>
+        <nav>
+            <button class="nav-btn active" data-page="player">Episoden</button>
+            <button class="nav-btn" data-page="generator">Episode erstellen</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page 1: Episode Player/Browser -->
+        <section id="page-player" class="page active">
+            <div class="player-layout">
+                <div class="episode-list" id="episode-list">
+                    <div class="loading">Episoden werden geladen...</div>
+                </div>
+
+                <div class="player-panel" id="player-panel">
+                    <div class="player-placeholder">
+                        <p>Episode ausw&auml;hlen zum Abspielen</p>
+                    </div>
+                    <div class="player-content" style="display:none;">
+                        <div class="now-playing">
+                            <h2 id="now-playing-title"></h2>
+                            <p id="now-playing-meta"></p>
+                        </div>
+                        <audio id="audio-player" controls preload="metadata"></audio>
+                        <div class="chapter-list" id="chapter-list"></div>
+                        <div class="article-links" id="article-links"></div>
+                        <div class="article-comparison" id="article-comparison"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 2: Episode Generator -->
+        <section id="page-generator" class="page">
+            <div class="generator-card">
+                <h2>Episode generieren</h2>
+                <p class="generator-desc">Artikel abrufen und eine neue Podcast-Episode f&uuml;r ein bestimmtes Datum erstellen.</p>
+
+                <div class="date-selector">
+                    <label>Datum:</label>
+                    <div class="date-dropdowns">
+                        <select id="sel-day"></select>
+                        <select id="sel-month"></select>
+                        <select id="sel-year"></select>
+                    </div>
+                </div>
+
+                <button id="btn-generate" class="btn-generate">Episode generieren</button>
+
+                <div id="generation-status" class="generation-status" style="display:none;">
+                    <span class="status-dot"></span>
+                    <span id="status-text"></span>
+                </div>
+            </div>
+
+            <div class="log-card">
+                <div class="log-header">
+                    <h3>Log-Ausgabe</h3>
+                    <button id="btn-clear-log" class="btn-small">Leeren</button>
+                </div>
+                <pre id="log-output"></pre>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div id="stats"></div>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+# ---------------------------------------------------------------
+# Generated output (audio is too large for GitHub; feed and chapters
+# contain the local network address)
+# ---------------------------------------------------------------
+output/audio/
+output/chapters/
+output/feed.xml
+
+# ---------------------------------------------------------------
+# Runtime data: database and backups
+# ---------------------------------------------------------------
+data/
+
+# ---------------------------------------------------------------
+# Personal voice recordings used for voice cloning
+# ---------------------------------------------------------------
+voices/*.wav
+voices/*.m4a
+voices/*.mp3
+
+# Temporary files created during TTS generation
+temp_segment_*
+*.chunk_*.wav
+*.concat.txt
+test_tts.wav
+
+# ---------------------------------------------------------------
+# Logs
+# ---------------------------------------------------------------
+logs/
+*.log
+nohup.out
+
+# ---------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+venv/
+venv_*/
+.venv/
+env/
+
+# ---------------------------------------------------------------
+# Local model files / checkpoints (downloaded automatically)
+# ---------------------------------------------------------------
+models/
+checkpoints/
+
+# ---------------------------------------------------------------
+# Secrets / local environment
+# ---------------------------------------------------------------
+.env
+.env.*
+
+# ---------------------------------------------------------------
+# Editor / OS
+# ---------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

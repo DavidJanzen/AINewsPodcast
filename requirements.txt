@@ -1,0 +1,18 @@
+# Der KI-osk - Python dependencies
+# System requirement (install separately): Ollama  https://ollama.com/  (ollama pull gpt-oss:20b)
+
+# RSS feed parsing and article scraping
+feedparser>=6.0.10
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+
+# Configuration
+PyYAML>=6.0.1
+
+# Web server
+flask>=3.0.0
+
+# Text-to-speech: Qwen3-TTS voice cloning
+qwen-tts>=0.1.1
+torch>=2.0
+numpy>=1.24

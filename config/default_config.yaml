@@ -1,0 +1,85 @@
+# ============================================================================
+# Der KI-osk - Configuration
+# All relative paths are relative to the project root.
+# ============================================================================
+
+# News source
+rss:
+  source_url: "https://the-decoder.de/feed"
+  max_articles_per_fetch: 50
+
+# SQLite database (articles + episodes)
+database:
+  path: "data/podcast.db"
+
+# Episode settings
+episode:
+  min_articles: 1               # Minimum articles needed to generate an episode
+  max_articles_per_episode: 20
+  summary_percentage: 50        # Summary length ≈ 50% of the original article length
+  summary_tolerance: 20         # Accept ±20% around the target length
+
+# ============================================================================
+# LLM (Ollama)
+# ============================================================================
+llm:
+  model: "gpt-oss:20b"
+  api_url: "http://localhost:11434/api/generate"
+  temperature: 0.8              # 0.0 = focused, 1.0 = creative
+  max_tokens: -1                # -1 = unlimited (the thinking model needs room for reasoning + answer)
+  timeout: 21600                # Seconds per request (6 h, long articles can take hours on CPU)
+  system_prompt: "Du bist David, der Host vom 'K-I-osk' Podcast. Du präsentierst KI-Nachrichten ausführlich, detailliert und unterhaltsam mit vielen technischen Details und Erklärungen. Du gibst sehr detaillierte Zusammenfassungen der neuesten KI-News."
+
+# ============================================================================
+# TTS (Qwen3-TTS voice cloning)
+# ============================================================================
+tts:
+  model_name: "Qwen/Qwen3-TTS-12Hz-1.7B-Base"  # HuggingFace model ID (downloaded on first use)
+  device: "cpu"                 # "cpu" or "cuda"
+  dtype: "float32"              # "float32" (CPU) or "float16" (GPU)
+  language: "German"
+  # Reference recording of the voice to clone (clear speech, WAV)
+  ref_audio: "voices/David_germanemodb1_7.wav"
+  # Exact transcript of the reference recording
+  ref_text: "Der Lappen liegt auf dem Eisschrank. Das will sie am Mittwoch abgeben. Heute abend könnte ich es ihm sagen. Das wa. Das schwarze Stück Papier befindet sich da oben neben dem Holzstück. In sieben Stunden wird es soweit sein. Was sind denn das für Tüten, die da unter dem Tisch stehen? Sie haben es gerade hochgetragen und jetzt gehen sie wieder runter."
+
+# ============================================================================
+# Podcast metadata (RSS feed)
+# ============================================================================
+podcast:
+  title: "Der KI-osk"
+  description: "Dein täglicher KI-News Podcast mit David. Ausführliche und unterhaltsame Zusammenfassungen der neuesten KI-Nachrichten."
+  author: "David"
+  email: "podcast@localhost"
+  category: "Technology"
+  language: "de"
+  copyright: "2026"
+  explicit: false
+  # image_url: ""               # Optional, defaults to http://<public_ip>:<port>/logo.png
+
+  # One greeting is picked at random for each episode intro
+  greeting_variations:
+    - "Willkommen im K-I-osk! Hey David, ich hoffe es ist alles o-KI bei dir."
+    - "Servus im K-I-osk! Hey David, ich hoffe alles ist Do-KI bei dir."
+    - "Moin im K-I-osk! Hey David, hoffentlich läuft bei dir alles o-KI-Do-KI."
+    - "Grüß dich im K-I-osk! Hey David, ich hoffe bei dir ist alles KI-o-KI."
+    - "Hallo im K-I-osk! Hey David, hoffentlich ist bei dir alles im grünen o-KI-Bereich."
+
+# ============================================================================
+# Server (local network only)
+# ============================================================================
+server:
+  host: "0.0.0.0"               # Listen on all interfaces
+  public_ip: "192.168.178.67"   # LAN address of this machine, used for all links in the RSS feed
+  port: 8080                    # Web player: http://<public_ip>:8080/   RSS feed: http://<public_ip>:8080/feed.xml
+
+# Output locations
+storage:
+  output_dir: "output"
+  audio_dir: "output/audio"
+
+# Logging
+logging:
+  level: "INFO"
+  file: "logs/podcast_generator.log"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
